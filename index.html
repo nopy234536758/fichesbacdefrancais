@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bac de français – Fiches avec parcours (ancien élève 17&18)</title>
+    <title>Bac de français – Fiches & méthodes</title>
     <style>
         * {
             margin: 0;
@@ -59,6 +59,161 @@
             box-shadow: 0 4px 8px #fbbf2440;
         }
 
+        /* SECTION CODE PROMO */
+        .promo-section {
+            background: #f1f5f9;
+            border-radius: 3rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            border: 2px dashed #1d3a5c;
+        }
+
+        .promo-section h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .promo-box {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            max-width: 600px;
+            margin: 1rem auto;
+        }
+
+        .promo-box input {
+            flex: 1 1 250px;
+            padding: 1rem 1.5rem;
+            border-radius: 60px;
+            border: 2px solid #cbd5e1;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        .promo-box input:focus {
+            border-color: #1d3a5c;
+        }
+
+        .promo-box button {
+            background: #1d3a5c;
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 6px 14px -6px #1d3a5c90;
+        }
+
+        .promo-box button:hover {
+            background: #0b2b44;
+        }
+
+        .promo-message {
+            margin-top: 1rem;
+            font-weight: 500;
+            min-height: 2rem;
+        }
+
+        /* SECTION FREEMIUM */
+        .free-section {
+            background: #dbeafe;
+            border-radius: 3rem;
+            padding: 2.5rem 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            border: 2px solid #3b82f6;
+        }
+
+        .free-section h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .free-section p {
+            font-size: 1.2rem;
+            color: #1e293b;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .free-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .free-card {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 15px 25px -10px #1e3a8a50;
+            border: 1px solid #bfdbfe;
+        }
+
+        .free-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .free-card .free-sub {
+            font-weight: 600;
+            color: #2563eb;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .free-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .free-card li {
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            font-size: 0.98rem;
+        }
+
+        .free-card li::before {
+            content: "📘";
+            color: #2563eb;
+        }
+
+        .btn-free {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 0.9rem 2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            transition: background 0.15s ease;
+            border: none;
+            box-shadow: 0 6px 12px -6px #2563eb90;
+            margin-top: 0.5rem;
+        }
+
+        .btn-free:hover {
+            background: #1d4ed8;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -75,6 +230,7 @@
             border: 1px solid #e2e8f0;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .card:hover {
@@ -86,6 +242,26 @@
             background: #f1f5f9;
             border: 2px solid #1d3a5c;
             position: relative;
+        }
+
+        .promo-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #dc2626;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            box-shadow: 0 6px 12px -4px #dc262680;
+            z-index: 10;
+            border: 2px solid white;
+            display: none; /* Caché par défaut */
+        }
+
+        .promo-badge.active {
+            display: block;
         }
 
         .pack-badge {
@@ -152,7 +328,7 @@
             font-size: 2.4rem;
             font-weight: 800;
             color: #0f172a;
-            margin: 0.5rem 0 1.5rem;
+            margin: 0.5rem 0 1rem;
             display: flex;
             align-items: baseline;
             gap: 0.3rem;
@@ -223,88 +399,149 @@
             .header h1 { font-size: 2.2rem; }
             .grid { gap: 1.5rem; }
             .pack-badge { font-size: 0.8rem; }
+            .free-section { padding: 1.5rem; }
+            .promo-badge { 
+                font-size: 0.8rem;
+                padding: 0.3rem 1rem;
+                top: -8px;
+                right: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Bac de français · Fiches avec parcours</h1>
-            <div class="subhead">Ancien élève – 17 & 18 aux épreuves – tout le programme</div>
-            <span class="badge">⚡ Parcours inclus pour chaque œuvre ⚡</span>
+            <h1>Bac de français · Fiches prêtes à l'emploi</h1>
+            <div class="subhead">Ancien élève – 17 & 18 aux épreuves – je partage ce qui a marché</div>
+            <span class="badge">⚡ Méthodes gratuites + analyses par œuvre ⚡</span>
         </div>
 
-        <div class="grid">
+        <!-- SECTION CODE PROMO -->
+        <div class="promo-section">
+            <h2>🎟️ Tu as un code promo ?</h2>
+            <div class="promo-box">
+                <input type="text" id="promoInput" placeholder="ex: CODE10" value="">
+                <button id="applyPromo">Appliquer</button>
+            </div>
+            <div id="promoMessage" class="promo-message">Aucun code appliqué (prix standard)</div>
+        </div>
+
+        <!-- SECTION FREEMIUM : MÉTHODES GRATUITES -->
+        <div class="free-section">
+            <h2>🎁 Les 3 méthodes offertes</h2>
+            <p>Commentaire, dissertation, oral – les étapes clés pour réussir.</p>
+            
+            <div class="free-grid">
+                <div class="free-card">
+                    <h3>📝 Commentaire</h3>
+                    <div class="free-sub">Méthode pas à pas</div>
+                    <ul>
+                        <li>Structure type</li>
+                        <li>Lexique d'analyse</li>
+                        <li>Exemple rédigé</li>
+                        <li>Pièges à éviter</li>
+                    </ul>
+                </div>
+                <div class="free-card">
+                    <h3>✍️ Dissertation</h3>
+                    <div class="free-sub">Méthode complète</div>
+                    <ul>
+                        <li>Introduction / conclusion</li>
+                        <li>Construire un plan</li>
+                        <li>Intégrer les citations</li>
+                        <li>Sujet corrigé</li>
+                    </ul>
+                </div>
+                <div class="free-card">
+                    <h3>🎤 Oral</h3>
+                    <div class="free-sub">Préparation & déroulé</div>
+                    <ul>
+                        <li>30 min de préparation</li>
+                        <li>Analyse linéaire</li>
+                        <li>Question de grammaire</li>
+                        <li>Entretien avec le jury</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="https://ko-fi.com/s/01f9737b8a" class="btn-free" target="_blank">📥 Télécharger les 3 méthodes (PDF)</a>
+            <p style="margin-top: 2rem; font-size: 0.95rem; color: #1e3a8a;">🔒 Aucun email requis – téléchargement direct</p>
+        </div>
+
+        <!-- PRODUITS PAYANTS -->
+        <h2 style="font-size: 2rem; text-align: center; margin: 3rem 0 1rem;">📚 Les fiches détaillées par œuvre</h2>
+        <p style="text-align: center; color: #475569; margin-bottom: 2rem;">Avec analyses linéaires + parcours – prix de base 3€/fiche, 6€ le pack.</p>
+
+        <div class="grid" id="productGrid">
             <!-- MUSSET -->
-            <div class="card">
+            <div class="card" data-product="badine">
+                <div class="promo-badge" id="badgeBadine">-10%</div>
                 <div class="emoji">🎭</div>
                 <h2>Musset</h2>
                 <div class="parcours">📌 Parcours : les jeux du cœur et de la parole</div>
                 <ul class="features">
-                    <li><strong>1 PDF analyse d’œuvre</strong> (thèmes, personnages, enjeux)</li>
-                    <li><strong>3 analyses linéaires approfondies</strong> (scènes clés)</li>
-                    <li><strong>1 analyse linéaire du parcours</strong> “les jeux du cœur et de la parole”</li>
-                    <li>Citations expliquées + structure détaillée</li>
-                    <li>Orgueil, manipulations, fin tragique</li>
+                    <li><strong>1 PDF analyse d’œuvre</strong> (thèmes, personnages)</li>
+                    <li><strong>3 analyses linéaires approfondies</strong></li>
+                    <li><strong>1 analyse linéaire du parcours</strong></li>
+                    <li>Citations expliquées</li>
                 </ul>
-                <div class="price">3€ <small>PDF</small></div>
-                <a href="https://ko-fi.com/s/c0181297f3" class="btn" target="_blank">Voir la fiche Musset</a>
+                <div class="price" id="priceBadine">3€ <small>prix standard</small></div>
+                <a href="https://ko-fi.com/s/c0181297f3" class="btn product-link" target="_blank" id="linkBadine">Voir la fiche Musset</a>
             </div>
 
             <!-- BALZAC -->
-            <div class="card">
+            <div class="card" data-product="peau">
+                <div class="promo-badge" id="badgePeau">-10%</div>
                 <div class="emoji">🏺</div>
                 <h2>Balzac</h2>
                 <div class="parcours">📌 Parcours : les romans de l'énergie – création et destruction</div>
                 <ul class="features">
-                    <li><strong>1 PDF analyse d’œuvre</strong> (structure, personnages, symboles)</li>
-                    <li><strong>3 analyses linéaires approfondies</strong> (passages décisifs)</li>
-                    <li><strong>1 analyse linéaire du parcours</strong> “les romans de l'énergie : création et destruction”</li>
-                    <li>Triangle Vouloir/Pouvoir/Savoir, échecs de Raphaël</li>
-                    <li>Argent, société, fatalité</li>
+                    <li><strong>1 PDF analyse d’œuvre</strong></li>
+                    <li><strong>3 analyses linéaires approfondies</strong></li>
+                    <li><strong>1 analyse linéaire du parcours</strong></li>
+                    <li>Citations expliquées</li>
                 </ul>
-                <div class="price">3€ <small>PDF</small></div>
-                <a href="https://ko-fi.com/s/6c94537f10" class="btn" target="_blank">Voir la fiche Balzac</a>
+                <div class="price" id="pricePeau">3€ <small>prix standard</small></div>
+                <a href="https://ko-fi.com/s/6c94537f10" class="btn product-link" target="_blank" id="linkPeau">Voir la fiche Balzac</a>
             </div>
 
             <!-- DORION -->
-            <div class="card">
+            <div class="card" data-product="foret">
+                <div class="promo-badge" id="badgeForet">-10%</div>
                 <div class="emoji">🌲</div>
                 <h2>Dorion</h2>
                 <div class="parcours">📌 Parcours : la poésie, la nature, l’intime</div>
                 <ul class="features">
-                    <li><strong>1 PDF analyse du recueil</strong> (structure, motifs)</li>
-                    <li><strong>3 analyses linéaires approfondies</strong> (poèmes clés)</li>
-                    <li><strong>1 analyse linéaire du parcours</strong> “la poésie, la nature, l’intime”</li>
-                    <li>Nature miroir, émerveillement / inquiétude</li>
-                    <li>Musicalité, contexte confinement</li>
+                    <li><strong>1 PDF analyse du recueil</strong></li>
+                    <li><strong>3 analyses linéaires approfondies</strong></li>
+                    <li><strong>1 analyse linéaire du parcours</strong></li>
+                    <li>Musicalité, motifs</li>
                 </ul>
-                <div class="price">3€ <small>PDF</small></div>
-                <a href="https://ko-fi.com/s/a0602b8dde" class="btn" target="_blank">Voir la fiche Dorion</a>
+                <div class="price" id="priceForet">3€ <small>prix standard</small></div>
+                <a href="https://ko-fi.com/s/a0602b8dde" class="btn product-link" target="_blank" id="linkForet">Voir la fiche Dorion</a>
             </div>
 
-            <!-- PACK COMPLET – mise en avant forte -->
-            <div class="card pack">
+            <!-- PACK COMPLET -->
+            <div class="card pack" data-product="pack">
+                <div class="promo-badge" id="badgePack">-10%</div>
                 <span class="pack-badge">🔥 2 achetés = 1 offert 🔥</span>
                 <div class="emoji">📦</div>
                 <h2>Pack · 3 œuvres</h2>
                 <div class="parcours">Tous les parcours inclus</div>
                 <ul class="features">
-                    <li><strong>3 PDF d’analyse d’œuvre</strong> complets</li>
-                    <li><strong>9 analyses linéaires approfondies</strong> (3 par œuvre)</li>
-                    <li><strong>3 analyses linéaires des parcours</strong> (intégralité des programmes)</li>
-                    <li>Musset : les jeux du cœur et de la parole</li>
-                    <li>Balzac : les romans de l'énergie – création et destruction</li>
-                    <li>Dorion : la poésie, la nature, l’intime</li>
+                    <li><strong>3 analyses d’œuvre</strong></li>
+                    <li><strong>9 analyses linéaires</strong> (3 par œuvre)</li>
+                    <li><strong>3 analyses de parcours</strong></li>
+                    <li>Musset, Balzac, Dorion</li>
                 </ul>
-                <div class="price">6€ <small>au lieu de 9€</small></div>
-                <a href="https://ko-fi.com/s/1c4d80033f" class="btn pack-btn" target="_blank">👉 Prendre le pack (économie 3€)</a>
+                <div class="price" id="pricePack">6€ <small>prix standard</small></div>
+                <a href="https://ko-fi.com/s/1c4d80033f" class="btn product-link pack-btn" target="_blank" id="linkPack">👉 Prendre le pack</a>
             </div>
         </div>
 
-        <!-- Légitimité honnête -->
+        <!-- Légitimité -->
         <div class="note-confiance">
-            ⭐ Conçu par un ancien élève (17 & 18 au bac) – fichiers testés · Téléchargement immédiat après paiement sécurisé (Ko‑fi)
+            ⭐ Conçu par un ancien élève (17 & 18) – fichiers testés · Téléchargement immédiat après paiement sécurisé (Ko‑fi)
         </div>
 
         <div class="footer">
@@ -317,5 +554,95 @@
             </p>
         </div>
     </div>
+
+    <script>
+        // Configuration des liens par défaut (sans réduction) et des liens promo
+        // Remplace ces URLs par celles de tes produits sans réduction (si tu en as)
+        const defaultLinks = {
+            badine: "https://ko-fi.com/s/c0181297f3", // ← à remplacer par le lien sans réduction si disponible
+            peau: "https://ko-fi.com/s/6c94537f10",
+            foret: "https://ko-fi.com/s/a0602b8dde",
+            pack: "https://ko-fi.com/s/1c4d80033f"
+        };
+
+        // Codes promo disponibles avec leurs liens (avec réduction)
+        const promoLinks = {
+            "MATHYLDE10": {
+                badine: "https://ko-fi.com/nopyuwu/link/MATHYLDE10_BADINE", // lien avec réduction
+                peau: "https://ko-fi.com/nopyuwu/link/MATHYLDE10_CHAGRIN",
+                foret: "https://ko-fi.com/nopyuwu/link/MATHYLDE10_FORETS",
+                pack: "https://ko-fi.com/nopyuwu/link/MATHYLDE10_ALL"
+            }
+            // Tu peux ajouter d'autres codes ici, par exemple :
+            // "ETUDIANT20": { ... }
+        };
+
+        // Éléments du DOM
+        const promoInput = document.getElementById('promoInput');
+        const applyBtn = document.getElementById('applyPromo');
+        const promoMessage = document.getElementById('promoMessage');
+        const badges = document.querySelectorAll('.promo-badge');
+        const priceBadine = document.getElementById('priceBadine');
+        const pricePeau = document.getElementById('pricePeau');
+        const priceForet = document.getElementById('priceForet');
+        const pricePack = document.getElementById('pricePack');
+        const linkBadine = document.getElementById('linkBadine');
+        const linkPeau = document.getElementById('linkPeau');
+        const linkForet = document.getElementById('linkForet');
+        const linkPack = document.getElementById('linkPack');
+
+        // Fonction pour mettre à jour l'affichage (prix, badge, liens)
+        function applyPromoCode(code) {
+            const upperCode = code.toUpperCase().trim();
+            let isPromoActive = false;
+            let linksToUse = defaultLinks;
+
+            if (promoLinks.hasOwnProperty(upperCode)) {
+                isPromoActive = true;
+                linksToUse = promoLinks[upperCode];
+                promoMessage.innerHTML = `✅ Code "${upperCode}" appliqué ! Prix réduits activés.`;
+            } else if (code === "") {
+                promoMessage.innerHTML = `Aucun code appliqué (prix standard)`;
+            } else {
+                promoMessage.innerHTML = `❌ Code "${code}" inconnu. Prix standard conservés.`;
+            }
+
+            // Mise à jour des badges
+            badges.forEach(badge => {
+                if (isPromoActive) {
+                    badge.classList.add('active');
+                } else {
+                    badge.classList.remove('active');
+                }
+            });
+
+            // Mise à jour des prix
+            if (isPromoActive) {
+                priceBadine.innerHTML = `2,70€ <small>au lieu de 3€</small>`;
+                pricePeau.innerHTML = `2,70€ <small>au lieu de 3€</small>`;
+                priceForet.innerHTML = `2,70€ <small>au lieu de 3€</small>`;
+                pricePack.innerHTML = `5,40€ <small>au lieu de 6€</small>`;
+            } else {
+                priceBadine.innerHTML = `3€ <small>prix standard</small>`;
+                pricePeau.innerHTML = `3€ <small>prix standard</small>`;
+                priceForet.innerHTML = `3€ <small>prix standard</small>`;
+                pricePack.innerHTML = `6€ <small>prix standard</small>`;
+            }
+
+            // Mise à jour des liens
+            linkBadine.href = linksToUse.badine;
+            linkPeau.href = linksToUse.peau;
+            linkForet.href = linksToUse.foret;
+            linkPack.href = linksToUse.pack;
+        }
+
+        // Événement du bouton
+        applyBtn.addEventListener('click', function() {
+            applyPromoCode(promoInput.value);
+        });
+
+        // Initialisation : pas de code actif (champ vide)
+        applyPromoCode("");
+    </script>
 </body>
-</html>
+</html>j
